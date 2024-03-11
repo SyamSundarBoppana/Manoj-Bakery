@@ -13,10 +13,9 @@ import { EmployeeService } from './employee.service';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
 import { UpdateEmployeeDto } from './dto/update-employee.dto';
 import { Employee } from './entities/employee.entity';
-import { ApiBody, ApiConsumes } from '@nestjs/swagger';
+import { ApiBody, ApiConsumes, ApiParam } from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { read, utils } from 'xlsx';
-
 
 @Controller('employee')
 export class EmployeeController {
@@ -47,11 +46,11 @@ export class EmployeeController {
     const workBook = read(file.buffer);
     const sheetName = workBook.SheetNames[0];
     const workSheet = workBook.Sheets[sheetName];
-    const jsonData = utils.sheet_to_json(workSheet,{header:0});
-    jsonData.map((data:CreateEmployeeDto)=>{
-      this.employeeService.create(data)
-    })
-    return 'File Uploaded Sucessfully'
+    const jsonData = utils.sheet_to_json(workSheet, { header: 0 });
+    jsonData.map((data: CreateEmployeeDto) => {
+      this.employeeService.create(data);
+    });
+    return 'File Uploaded Sucessfully';
   }
 
   @Get()

@@ -25,7 +25,7 @@ export class EmployeeService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} employee`;
+    return this.employeeRepository.findOneBy({id});
   }
 
   update(id: number, updateEmployeeDto: UpdateEmployeeDto) {
@@ -33,6 +33,6 @@ export class EmployeeService {
   }
 
   remove(id: number) {
-    return `This action removes a #${id} employee`;
+    return this.employeeRepository.delete(id);
   }
 }
