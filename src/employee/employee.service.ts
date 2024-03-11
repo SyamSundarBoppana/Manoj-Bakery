@@ -12,7 +12,7 @@ export class EmployeeService {
     private readonly employeeRepository: Repository<Employee>,
   ) {}
 
-  create(createEmployeeDto: CreateEmployeeDto):Promise<Employee> {
+  create(createEmployeeDto: CreateEmployeeDto): Promise<Employee> {
     const employee: Employee = new Employee();
     employee.employeeName = createEmployeeDto.employeeName;
     employee.location = createEmployeeDto.location;
@@ -20,16 +20,21 @@ export class EmployeeService {
     return this.employeeRepository.save(employee);
   }
 
-  findAll():Promise<Employee[]> {
+  findAll(): Promise<Employee[]> {
     return this.employeeRepository.find();
   }
 
-  findOne(id: number) {
-    return this.employeeRepository.findOneBy({id});
+  findOne(id: number):Promise<Employee> {
+    return this.employeeRepository.findOneBy({ id });
   }
 
-  update(id: number, updateEmployeeDto: UpdateEmployeeDto) {
-    return `This action updates a #${id} employee`;
+  update(id: number, updateEmployeeDto: UpdateEmployeeDto): Promise<Employee> {
+    const employee: Employee = new Employee();
+    employee.employeeName = updateEmployeeDto.employeeName;
+    employee.location = updateEmployeeDto.location;
+    employee.employeeId = updateEmployeeDto.employeeId;
+    employee.id = id;
+    return this.employeeRepository.save(employee);
   }
 
   remove(id: number) {
