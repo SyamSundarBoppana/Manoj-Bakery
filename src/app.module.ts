@@ -8,7 +8,7 @@ import { EmployeeModule } from './employee/employee.module';
     TypeOrmModule.forRoot({
       name: "default",
       type: 'postgres',
-      url:"postgresql://postgres:oSovMRFqKqbIEtOgiWHrXPfXaNitzntF@viaduct.proxy.rlwy.net:39507/railway",
+      url:"postgresql://postgres:zaUeFpsNwxztGBlHFgmeVbWeXPsfQrAl@viaduct.proxy.rlwy.net:27040/railway",
       entities: [Employee],
       synchronize: true,
       logging: true,
